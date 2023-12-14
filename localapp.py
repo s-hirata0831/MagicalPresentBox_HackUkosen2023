@@ -9,9 +9,11 @@ class App(customtkinter.CTk):
 
         # メンバー変数の設定
         self.fonts = (FONT_TYPE, 15)
+        #タイトルバーの非表示
+        self.wm_overrideredirect(True)
         # フォームサイズ設定
-        self.geometry("350x200")
-        self.title("Basic GUI")
+        self.geometry("1024x600")
+        self.title("Magical Present Box")
 
         # フォームのセットアップをする
         self.setup_form()
@@ -28,6 +30,10 @@ class App(customtkinter.CTk):
         # ボタンを表示する
         self.button = customtkinter.CTkButton(master=self, text="クリックしてね", command=self.button_function, font=self.fonts)
         self.button.place(x=100, y=100)
+
+        #画面クローズ用ボタン
+        self.close = customtkinter.CTkButton(master=self, text="Close", command=self.destroy, font=self.fonts)
+        self.close.place(x=100, y=150) 
     
     def button_function(self):
         # テキストボックスに入力されたテキストを表示する
