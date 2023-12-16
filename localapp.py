@@ -45,6 +45,11 @@ class App(customtkinter.CTk):
         #交換開始ボタン
         self.exchangeB = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.exchangeB.place(relx = 0.5, y = 500, anchor="center")
+
+        #サンタ画像
+        self.santa_image()
+
+        #全体の背景色設定
         self.config(bg="#e3e3e3")
 
     def title_image(self):
@@ -57,6 +62,17 @@ class App(customtkinter.CTk):
         self.canvas.place(x=179, y=110, anchor="nw")
         #キャンバスに画像を描画
         self.canvas.create_image(0,0, image = self.image, anchor="nw")
+
+    def santa_image(self):
+        #画像の読み込み
+        self.image_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa.png")
+        self.image = Image.open(self.image_path)
+        self.image = ImageTk.PhotoImage(self.image)
+        #キャンバスの作成
+        self.canvas = customtkinter.CTkCanvas(master=self, width=self.image.width()-1, height=self.image.height()-1, bd =0)
+        self.canvas.place(x=0, y=260, anchor="nw")
+        #キャンバスに画像を描画
+        self.canvas.create_image(0,0,image=self.image, anchor="nw")
 
 if __name__ == "__main__":
     # アプリケーション実行
