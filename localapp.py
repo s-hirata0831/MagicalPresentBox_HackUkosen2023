@@ -52,11 +52,11 @@ class App(customtkinter.CTk):
         self.image = Image.open(self.image_path)
         self.image = ImageTk.PhotoImage(self.image)
         #キャンバスの作成
-        self.canvas = customtkinter.CTkCanvas(master=self, width=self.image.width(), height=self.image.height())
+        self.canvas = customtkinter.CTkCanvas(master=self, width=self.image.width()-5, height=self.image.height()-5, bd=0)
         self.canvas.place(relx=0.5, y=300, anchor="center")
         #キャンバスに画像を描画
         self.canvas.create_image(0,0, image = self.image, anchor="nw")
-        self.canvas.config(borderwidth=0)
+        self.canvas.config(bd=0)
 
 if __name__ == "__main__":
     # アプリケーション実行
