@@ -1,5 +1,8 @@
 import tkinter as tk
 import customtkinter
+import os
+from PIL import Image, ImageTk
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 FONT_TYPE = "meiryo"
 
@@ -9,43 +12,50 @@ class App(customtkinter.CTk):
         super().__init__()
 
         # メンバー変数の設定
-        self.fonts = (FONT_TYPE, 15)
+        self.fonts = (FONT_TYPE, 15, "bold")
         self.smallFonts= (FONT_TYPE, 10)
         self.corner= (50)
         #タイトルバーの非表示
         self.wm_overrideredirect(True)
-        # フォームサイズ設定
-        self.geometry("1024x600")
-        self.title("Magical Present Box")
 
         # フォームのセットアップをする
         self.setup_form()
     
     def setup_form(self):
         # CustomTkinter のフォームデザイン設定
-        customtkinter.set_appearance_mode("dark")
+        customtkinter.set_appearance_mode("light")
         customtkinter.set_default_color_theme("green")
 
-        # クローズボタン
-        self.closeB = customtkinter.CTkButton(master=self, text="Close", command=self.destroy,font=self.smallFonts,width=10, height=5, corner_radius=self.corner)
-        self.closeB.grid(row=0, column=0, padx=0, pady=0)
+        # フォームサイズ設定
+        self.geometry("1024x600")
+        self.title("Magical Present Box")
 
-        #サイトボタン
-        self.siteB = customtkinter.CTkButton(master=self, text="シェアする", font=self.smallFonts, width=10, height=5, corner_radius=self.corner)
-        self.siteB.grid(row=0, column=1, padx=0, pady=20)
+        #行方向のマスのレイアウトを設定
+        self.grid_rowconfigure(0)
+        #列方向のマスのレイアウトを設定
+        self.grid_columnconfigure(0)
 
-        # ボタンを表示する
-        self.button = customtkinter.CTkButton(master=self, text="クリックしてね", command=self.button_function, font=self.fonts, corner_radius=self.corner)
-        self.button.grid(row=1, column=0, padx=200, pady=50)
+        #クローズボタン
+        self.closeB = customtkinter.CTkButton(master=self, text="Close", command=self.destroy,font=self.smallFonts,width=10, height=5, corner_radius=self.corner, text_color="yellow")
+        self.closeB.place(x = 10, y = 10)
+        
+        #タイトル画像
+        self.title_image()
 
-        #画面クローズ用ボタン
-        self.close = customtkinter.CTkButton(master=self, text="Close", command=self.destroy, font=self.fonts, corner_radius=self.corner)
-        self.close.place(x=100, y=150) 
-    
-    def button_function(self):
-        # テキストボックスに入力されたテキストを表示する
-        print(self.textbox.get())
+        #交換開始ボタン
+        self.exchangeB = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.exchangeB.place(relx = 0.5, y = 450, anchor="center")
 
+    def title_image(self):
+        #画像の読み込み
+        self.image_path = os.path.join(os.path.dirname(__file__), R".\src_localapp\logo_big_resize-removebg-preview.png")
+        self.image = Image.open(self.image_path)
+        self.image = ImageTk.PhotoImage(self.image)
+        #キャンバスの作成
+        self.canvas = customtkinter.CTkCanvas(master=self, width=self.image.width(), height=self.image.height())
+        self.canvas.place(relx=0.5, y=300, anchor="center")
+        #キャンバスに画像を描画
+        self.canvas.create_image(0,0, image = self.image, anchor="nw")
 
 if __name__ == "__main__":
     # アプリケーション実行
