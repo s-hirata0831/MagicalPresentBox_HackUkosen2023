@@ -53,7 +53,7 @@ class App(customtkinter.CTk):
         self.image = ImageTk.PhotoImage(self.image)
         #キャンバスの作成
         self.canvas = customtkinter.CTkCanvas(master=self, width=self.image.width()-5, height=self.image.height()-5, bd=0)
-        self.canvas.place(relx=0.5, y=300, anchor="center")
+        self.canvas.place(x=179, y=110, anchor="nw")
         #キャンバスに画像を描画
         self.canvas.create_image(0,0, image = self.image, anchor="nw")
         self.canvas.config(bd=0)
