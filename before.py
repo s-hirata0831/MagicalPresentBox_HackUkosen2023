@@ -35,14 +35,6 @@ class App(customtkinter.CTk):
         #列方向のマスのレイアウトを設定
         self.grid_columnconfigure(0)
 
-        #全体の背景色設定
-        self.config(bg="#e3e3e3")
-
-        #タイトル画面へ移行
-        self.title_frame()
-
-#タイトル画面(画面01)========================================================================
-    def title_frame(self):
         #クローズボタン
         self.closeB = customtkinter.CTkButton(master=self, text="Close", command=self.destroy,font=self.smallFonts,width=10, height=5, corner_radius=self.corner, text_color="yellow")
         self.closeB.place(x = 10, y = 10)
@@ -51,7 +43,7 @@ class App(customtkinter.CTk):
         self.title_image()
 
         #交換開始ボタン
-        self.exchangeB = customtkinter.CTkButton(master=self, text="交換する！", command=self.go_to_openBox,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.exchangeB = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.exchangeB.place(relx = 0.5, y = 500, anchor="center")
 
         #サンタ画像
@@ -59,6 +51,9 @@ class App(customtkinter.CTk):
 
         #プレゼントイメージ画像
         self.present_image()
+
+        #全体の背景色設定
+        self.config(bg="#e3e3e3")
 
     def title_image(self):
         #画像の読み込み
@@ -92,20 +87,6 @@ class App(customtkinter.CTk):
         self.present_canvas.place(x=780, y=468, anchor="nw")
         #キャンバスに画像を描画
         self.present_canvas.create_image(0,0,image=self.present, anchor="nw")
-
-#プレゼント入れる(02)========================================================================
-    def go_to_openBox(self):
-        self.canvas.destroy()
-        self.santa_canvas.destroy()
-        self.present_canvas.destroy()
-        self.closeB.destroy()
-        self.exchangeB.destroy()
-        self.openBox_frame()
-
-    def openBox_frame(self):
-        #交換開始ボタン
-        self.inPresent = customtkinter.CTkButton(master=self, text="交換する！",command=self.destroy, font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
-        self.inPresent.place(relx = 0.5, y = 500, anchor="center")
 
 if __name__ == "__main__":
     # アプリケーション実行
