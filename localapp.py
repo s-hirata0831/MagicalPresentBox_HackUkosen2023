@@ -23,7 +23,7 @@ class App(customtkinter.CTk):
     
     def setup_form(self):
         # CustomTkinter のフォームデザイン設定
-        customtkinter.set_appearance_mode("dark")
+        customtkinter.set_appearance_mode("light")
         customtkinter.set_default_color_theme("green")
 
         # フォームサイズ設定
@@ -48,7 +48,7 @@ class App(customtkinter.CTk):
 
     def title_image(self):
         #画像の読み込み
-        self.image_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/logo_big_back.png")
+        self.image_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/logo_big_resize-removebg-preview.png")
         self.image = Image.open(self.image_path)
         self.image = ImageTk.PhotoImage(self.image)
         #キャンバスの作成
