@@ -46,9 +46,6 @@ class App(customtkinter.CTk):
         self.exchangeB = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.exchangeB.place(relx = 0.5, y = 500, anchor="center")
 
-        #背景色を設定
-        self.config(bg="#e9e9e9")
-
     def title_image(self):
         #画像の読み込み
         self.image_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/logo_big_resize-removebg-preview.png")
@@ -59,6 +56,7 @@ class App(customtkinter.CTk):
         self.canvas.place(relx=0.5, y=300, anchor="center")
         #キャンバスに画像を描画
         self.canvas.create_image(0,0, image = self.image, anchor="nw")
+        self.canvas.config(borderwidth=0)
 
 if __name__ == "__main__":
     # アプリケーション実行
