@@ -44,7 +44,7 @@ class App(customtkinter.CTk):
 
         #交換開始ボタン
         self.exchangeB = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
-        self.exchangeB.place(relx = 0.5, y = 450, anchor="center")
+        self.exchangeB.place(relx = 0.5, y = 500, anchor="center")
 
     def title_image(self):
         #画像の読み込み
