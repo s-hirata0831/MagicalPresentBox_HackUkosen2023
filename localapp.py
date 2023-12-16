@@ -65,14 +65,14 @@ class App(customtkinter.CTk):
 
     def santa_image(self):
         #画像の読み込み
-        self.image_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa.png")
-        self.image = Image.open(self.image_path)
-        self.image = ImageTk.PhotoImage(self.image)
+        self.santa_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa.png")
+        self.santa = Image.open(self.santa_path)
+        self.santa = ImageTk.PhotoImage(self.santa)
         #キャンバスの作成
-        self.canvas = customtkinter.CTkCanvas(master=self, width=self.image.width()-1, height=self.image.height()-1, bd =0)
-        self.canvas.place(x=0, y=260, anchor="nw")
+        self.santa_canvas = customtkinter.CTkCanvas(master=self, width=self.santa.width()-1, height=self.santa.height()-1, bd =0)
+        self.santa_canvas.place(x=0, y=260, anchor="nw")
         #キャンバスに画像を描画
-        self.canvas.create_image(0,0,image=self.image, anchor="nw")
+        self.santa_canvas.create_image(0,0,image=self.santa, anchor="nw")
 
 if __name__ == "__main__":
     # アプリケーション実行
