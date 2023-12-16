@@ -23,7 +23,7 @@ class App(customtkinter.CTk):
     
     def setup_form(self):
         # CustomTkinter のフォームデザイン設定
-        customtkinter.set_appearance_mode("light")
+        customtkinter.set_appearance_mode("#EBEBEB")
         customtkinter.set_default_color_theme("green")
 
         # フォームサイズ設定
