@@ -49,6 +49,9 @@ class App(customtkinter.CTk):
         #サンタ画像
         self.santa_image()
 
+        #プレゼントイメージ画像
+        self.present_image()
+
         #全体の背景色設定
         self.config(bg="#e3e3e3")
 
@@ -73,6 +76,17 @@ class App(customtkinter.CTk):
         self.santa_canvas.place(x=50, y=250, anchor="nw")
         #キャンバスに画像を描画
         self.santa_canvas.create_image(0,0,image=self.santa, anchor="nw")
+
+    def present_image(self):
+        #画像の読み込み
+        self.present_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/present.png")
+        self.present = Image.open(self.present_path)
+        self.present = ImageTk.PhotoImage(self.present)
+        #キャンバスの作成
+        self.present_canvas = customtkinter.CTkCanvas(master=self, width=self.present.width()-1, height=self.present.height()-1, bd =0)
+        self.present_canvas.place(x=780, y=468, anchor="nw")
+        #キャンバスに画像を描画
+        self.present_canvas.create_image(0,0,image=self.present, anchor="nw")
 
 if __name__ == "__main__":
     # アプリケーション実行
