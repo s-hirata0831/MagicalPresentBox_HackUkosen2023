@@ -45,6 +45,7 @@ class App(customtkinter.CTk):
         #交換開始ボタン
         self.exchangeB = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.exchangeB.place(relx = 0.5, y = 500, anchor="center")
+        self.config(bg="#e3e3e3")
 
     def title_image(self):
         #画像の読み込み
@@ -56,7 +57,6 @@ class App(customtkinter.CTk):
         self.canvas.place(x=179, y=110, anchor="nw")
         #キャンバスに画像を描画
         self.canvas.create_image(0,0, image = self.image, anchor="nw")
-        self.canvas.config(bd=0)
 
 if __name__ == "__main__":
     # アプリケーション実行
