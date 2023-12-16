@@ -70,7 +70,7 @@ class App(customtkinter.CTk):
         self.santa = ImageTk.PhotoImage(self.santa)
         #キャンバスの作成
         self.santa_canvas = customtkinter.CTkCanvas(master=self, width=self.santa.width()-1, height=self.santa.height()-1, bd =0)
-        self.santa_canvas.place(x=0, y=260, anchor="nw")
+        self.santa_canvas.place(x=50, y=250, anchor="nw")
         #キャンバスに画像を描画
         self.santa_canvas.create_image(0,0,image=self.santa, anchor="nw")
 
