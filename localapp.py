@@ -117,7 +117,7 @@ class App(customtkinter.CTk):
         self.header = ImageTk.PhotoImage(self.header)
         #キャンバスの作成
         self.header_canvas = customtkinter.CTkCanvas(master=self, width=self.header.width()-1, height=self.header.height()-1, bd =0)
-        self.header_canvas.place(x=0, y=-15, anchor="nw")
+        self.header_canvas.place(x=20, y=0, anchor="nw")
         #キャンバスに画像を描画
         self.header_canvas.create_image(0,0,image=self.header, anchor="nw")
         
