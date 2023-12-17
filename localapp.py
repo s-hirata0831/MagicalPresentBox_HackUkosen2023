@@ -112,7 +112,7 @@ class App(customtkinter.CTk):
 
     def header_image(self):
         #画像の読み込み
-        self.header_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/logo_mini.png")
+        self.header_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/logo_mini_resize.png")
         self.header = Image.open(self.header_path)
         self.header = ImageTk.PhotoImage(self.header)
         #キャンバスの作成
