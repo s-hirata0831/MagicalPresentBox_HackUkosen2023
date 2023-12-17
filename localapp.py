@@ -2,7 +2,6 @@ import tkinter as tk
 import customtkinter
 import os
 from PIL import Image, ImageTk
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 FONT_TYPE = "meiryo"
 
@@ -45,7 +44,7 @@ class App(customtkinter.CTk):
     def title_frame(self):
         #クローズボタン
         self.closeB = customtkinter.CTkButton(master=self, text="Close", command=self.destroy,font=self.smallFonts,width=10, height=5, corner_radius=self.corner, text_color="yellow")
-        self.closeB.place(x = 10, y = 10)
+        self.closeB.place(x = 985, y = 10)
         
         #タイトル画像
         self.title_image()
@@ -98,14 +97,53 @@ class App(customtkinter.CTk):
         self.canvas.destroy()
         self.santa_canvas.destroy()
         self.present_canvas.destroy()
-        self.closeB.destroy()
         self.exchangeB.destroy()
         self.openBox_frame()
 
     def openBox_frame(self):
+        self.judge = 1
+        #どちらの箱が空いているか判定
+        if self.judge == 1:
+            print("上の箱が空いています")
+            self.overBox_open()
+        else:
+            print("下の箱が空いています")
+            self.underBox_open()
+
+    def header_image(self):
+        #画像の読み込み
+        self.header_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/logo_mini_resize.png")
+        self.header = Image.open(self.header_path)
+        self.header = ImageTk.PhotoImage(self.header)
+        #キャンバスの作成
+        self.header_canvas = customtkinter.CTkCanvas(master=self, width=self.header.width()-1, height=self.header.height()-1, bd =0)
+        self.header_canvas.place(x=0, y=-15, anchor="nw")
+        #キャンバスに画像を描画
+        self.header_canvas.create_image(0,0,image=self.header, anchor="nw")
+        
+    def overBox_open(self):
+        #ヘッダー
+        self.header_image()
+        #プレゼント入れるのを促す
+        self.overOpen_image()
         #交換開始ボタン
-        self.inPresent = customtkinter.CTkButton(master=self, text="交換する！",command=self.destroy, font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
-        self.inPresent.place(relx = 0.5, y = 500, anchor="center")
+        self.kaishi = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.kaishi.place(relx = 0.5, y = 500, anchor="center")
+
+    def overOpen_image(self):
+        #画像の読み込み
+        self.overOpen_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/overBoxOpen.png")
+        self.overOpen = Image.open(self.overOpen_path)
+        self.overOpen = ImageTk.PhotoImage(self.overOpen)
+        #キャンバスの作成
+        self.overOpen_canvas = customtkinter.CTkCanvas(master=self, width=self.overOpen.width()-1, height=self.overOpen.height()-1, bd =0)
+        self.overOpen_canvas.place(x=70, y=125, anchor="nw")
+        #キャンバスに画像を描画
+        self.overOpen_canvas.create_image(0,0,image=self.overOpen, anchor="nw")
+
+    def underBox_open(self):
+        #ヘッダー
+        self.header_image()
 
 if __name__ == "__main__":
     # アプリケーション実行
