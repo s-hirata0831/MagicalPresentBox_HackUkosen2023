@@ -128,8 +128,8 @@ class App(customtkinter.CTk):
         #プレゼント入れるのを促す
         self.overOpen_image()
         #交換開始ボタン
-        self.kaishi = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
-        self.kaishi.place(x = 635, y = 470)
+        self.kaishi = customtkinter.CTkButton(master=self, text="プレゼントを入れた！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.kaishi.place(x = 585, y = 470)
         self.label = customtkinter.CTkLabel(self, text="上の箱の扉を開けて",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
         self.label.place(x = 515, y = 200)
         self.label = customtkinter.CTkLabel(self, text="次の人へのプレゼント",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
