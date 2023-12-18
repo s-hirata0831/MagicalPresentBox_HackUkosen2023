@@ -182,12 +182,32 @@ class App(customtkinter.CTk):
             self.label2.destroy()
             self.label3.destroy()
             self.overOpen_canvas.destroy()
+            self.lockBox_frame()
         else:
             self.underIn.destroy()
             self.underLabel1.destroy()
             self.underLabel2.destroy()
             self.underLabel3.destroy()
             self.underOpen_canvas.destroy()
+            self.lockBox_frame()
+
+    def lockBox_frame(self):
+        self.lockLabel = customtkinter.CTkLabel(self, text="箱をロックします。ボタンをタッチ！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.lockLabel.place(relx = 0.5, y = 200, anchor="center")
+        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.lockBtn.place(relx = 0.5, y = 520, anchor="center")
+        self.loaddingSanta_image()
+    
+    def loaddingSanta_image(self):
+        #画像の読み込み
+        self.loadingSanta_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/loading_santa.png")
+        self.loadingSanta = Image.open(self.loadingSanta_path)
+        self.loadingSanta = ImageTk.PhotoImage(self.loadingSanta)
+        #キャンバスの作成
+        self.loadingSanta_canvas = customtkinter.CTkCanvas(master=self, width=self.loadingSanta.width()-1, height=self.loadingSanta.height()-1, bd =0)
+        self.loadingSanta_canvas.place(relx=0.5, y=350, anchor="center")
+        #キャンバスに画像を描画
+        self.loadingSanta_canvas.create_image(0,0,image=self.loadingSanta, anchor="nw")
 
 if __name__ == "__main__":
     # アプリケーション実行
