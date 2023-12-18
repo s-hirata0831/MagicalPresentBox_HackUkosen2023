@@ -102,7 +102,7 @@ class App(customtkinter.CTk):
         self.openBox_frame()
 
     def openBox_frame(self):
-        self.judge = 1
+        self.judge = 0
         #どちらの箱が空いているか判定
         if self.judge == 1:
             print("上の箱が空いています")
@@ -151,6 +151,28 @@ class App(customtkinter.CTk):
     def underBox_open(self):
         #ヘッダー
         self.header_image()
+        #プレゼント入れるのを促す
+        self.underOpen_image()
+        #交換開始ボタン
+        self.underIn = customtkinter.CTkButton(master=self, text="プレゼントを入れた！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.underIn.place(x = 585, y = 470)
+        self.underLabel = customtkinter.CTkLabel(self, text="下の箱の扉を開けて",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
+        self.underLabel.place(x = 515, y = 200)
+        self.underLabel = customtkinter.CTkLabel(self, text="次の人へのプレゼント",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.underLabel.place(x = 515, y = 270)
+        self.underLabel = customtkinter.CTkLabel(self, text="を入れよう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.underLabel.place(x = 515, y = 340)
+
+    def underOpen_image(self):
+        #画像の読み込み
+        self.underOpen_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/underBoxOpen.png")
+        self.underOpen = Image.open(self.underOpen_path)
+        self.underOpen = ImageTk.PhotoImage(self.underOpen)
+        #キャンバスの作成
+        self.underOpen_canvas = customtkinter.CTkCanvas(master=self, width=self.underOpen.width()-1, height=self.underOpen.height()-1, bd =0)
+        self.underOpen_canvas.place(x=70, y=125, anchor="nw")
+        #キャンバスに画像を描画
+        self.underOpen_canvas.create_image(0,0,image=self.underOpen, anchor="nw")
 
 if __name__ == "__main__":
     # アプリケーション実行
