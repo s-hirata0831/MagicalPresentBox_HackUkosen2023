@@ -11,7 +11,8 @@ class App(customtkinter.CTk):
         super().__init__()
 
         # メンバー変数の設定
-        self.fonts = (FONT_TYPE, 15, "bold")
+        self.fonts = (FONT_TYPE, 30, "bold")
+        self.displayfont = (FONT_TYPE, 50, "bold")
         self.smallFonts= (FONT_TYPE, 10)
         self.corner= (50)
         #タイトルバーの非表示
@@ -128,9 +129,13 @@ class App(customtkinter.CTk):
         self.overOpen_image()
         #交換開始ボタン
         self.kaishi = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
-        self.kaishi.place(relx = 0.5, y = 500, anchor="center")
-        self.label = customtkinter.CTkLabel(self, text="Hello, world!",  font=self.fonts, text_color="white", bg_color="black")
-        self.label.place(x = 500, y = 200)
+        self.kaishi.place(x = 650, y = 450)
+        self.label = customtkinter.CTkLabel(self, text="上の箱の扉を開けて",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
+        self.label.place(x = 530, y = 200)
+        self.label = customtkinter.CTkLabel(self, text="次の人へのプレゼント",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.label.place(x = 530, y = 260)
+        self.label = customtkinter.CTkLabel(self, text="を入れよう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.label.place(x = 530, y = 320)
 
     def overOpen_image(self):
         #画像の読み込み
