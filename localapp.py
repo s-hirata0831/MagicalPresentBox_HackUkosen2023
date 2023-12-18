@@ -221,7 +221,6 @@ class App(customtkinter.CTk):
         self.judgePresentFlow()
     
     def judgePresentFlow(self):
-        time.sleep(5)
         self.go_to_judgeResult()
 
 
@@ -238,6 +237,7 @@ class App(customtkinter.CTk):
 
 #判定結果を表示(05)========================================================================        
     def go_to_judgeResult(self):
+        time.sleep(5)
         self.judgePresent_canvas.destroy()
 
 if __name__ == "__main__":
