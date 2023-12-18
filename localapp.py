@@ -129,6 +129,8 @@ class App(customtkinter.CTk):
         #交換開始ボタン
         self.kaishi = customtkinter.CTkButton(master=self, text="交換する！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.kaishi.place(relx = 0.5, y = 500, anchor="center")
+        self.label = customtkinter.CTkLabel(self, text="Hello, world!",  font=self.fonts, text_color="white", bg_color="black")
+        self.label.place(x = 500, y = 200)
 
     def overOpen_image(self):
         #画像の読み込み
