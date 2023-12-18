@@ -194,7 +194,7 @@ class App(customtkinter.CTk):
     def lockBox_frame(self):
         self.lockLabel = customtkinter.CTkLabel(self, text="箱をロックします。ボタンをタッチ！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.lockLabel.place(relx = 0.5, y = 200, anchor="center")
-        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=self.go_to_judgePresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.lockBtn.place(relx = 0.5, y = 520, anchor="center")
         self.loaddingSanta_image()
     
@@ -208,6 +208,26 @@ class App(customtkinter.CTk):
         self.loadingSanta_canvas.place(relx=0.5, y=350, anchor="center")
         #キャンバスに画像を描画
         self.loadingSanta_canvas.create_image(0,0,image=self.loadingSanta, anchor="nw")
+
+#プレゼントを判定(03)========================================================================
+    def go_to_judgePresent(self):
+        self.lockBtn.destroy()
+        self.loadingSanta_canvas.destroy()
+        self.lockLabel.destroy()
+        self.judgeLabel = customtkinter.CTkLabel(self, text="プレゼントを確認中！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.judgeLabel.place(relx = 0.5, y = 200, anchor="center")
+        self.judgePresent_image()
+    
+    def judgePresent_image(self):
+        #画像の読み込み
+        self.judgePresent_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/present_big.png")
+        self.judgePresent = Image.open(self.judgePresent_path)
+        self.judgePresent = ImageTk.PhotoImage(self.judgePresent)
+        #キャンバスの作成
+        self.judgePresent_canvas = customtkinter.CTkCanvas(master=self, width=self.judgePresent.width()-1, height=self.judgePresent.height()-1, bd =0)
+        self.judgePresent_canvas.place(relx=0.5, y=350, anchor="center")
+        #キャンバスに画像を描画
+        self.judgePresent_canvas.create_image(0,0,image=self.judgePresent, anchor="nw")        
 
 if __name__ == "__main__":
     # アプリケーション実行
