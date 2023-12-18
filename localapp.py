@@ -128,14 +128,14 @@ class App(customtkinter.CTk):
         #プレゼント入れるのを促す
         self.overOpen_image()
         #交換開始ボタン
-        self.kaishi = customtkinter.CTkButton(master=self, text="プレゼントを入れた！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.kaishi = customtkinter.CTkButton(master=self, text="プレゼントを入れた！", command=self.go_to_lockBox,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.kaishi.place(x = 585, y = 470)
-        self.label = customtkinter.CTkLabel(self, text="上の箱の扉を開けて",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
-        self.label.place(x = 515, y = 200)
-        self.label = customtkinter.CTkLabel(self, text="次の人へのプレゼント",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
-        self.label.place(x = 515, y = 270)
-        self.label = customtkinter.CTkLabel(self, text="を入れよう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
-        self.label.place(x = 515, y = 340)
+        self.label1 = customtkinter.CTkLabel(self, text="上の箱の扉を開けて",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
+        self.label1.place(x = 515, y = 200)
+        self.label2 = customtkinter.CTkLabel(self, text="次の人へのプレゼント",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.label2.place(x = 515, y = 270)
+        self.label3 = customtkinter.CTkLabel(self, text="を入れよう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.label3.place(x = 515, y = 340)
 
     def overOpen_image(self):
         #画像の読み込み
@@ -154,14 +154,14 @@ class App(customtkinter.CTk):
         #プレゼント入れるのを促す
         self.underOpen_image()
         #交換開始ボタン
-        self.underIn = customtkinter.CTkButton(master=self, text="プレゼントを入れた！", command=self.destroy,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.underIn = customtkinter.CTkButton(master=self, text="プレゼントを入れた！", command=self.go_to_lockBox,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.underIn.place(x = 585, y = 470)
-        self.underLabel = customtkinter.CTkLabel(self, text="下の箱の扉を開けて",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
-        self.underLabel.place(x = 515, y = 200)
-        self.underLabel = customtkinter.CTkLabel(self, text="次の人へのプレゼント",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
-        self.underLabel.place(x = 515, y = 270)
-        self.underLabel = customtkinter.CTkLabel(self, text="を入れよう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
-        self.underLabel.place(x = 515, y = 340)
+        self.underLabel1 = customtkinter.CTkLabel(self, text="下の箱の扉を開けて",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
+        self.underLabel1.place(x = 515, y = 200)
+        self.underLabel2 = customtkinter.CTkLabel(self, text="次の人へのプレゼント",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.underLabel2.place(x = 515, y = 270)
+        self.underLabel3 = customtkinter.CTkLabel(self, text="を入れよう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.underLabel3.place(x = 515, y = 340)
 
     def underOpen_image(self):
         #画像の読み込み
@@ -173,6 +173,21 @@ class App(customtkinter.CTk):
         self.underOpen_canvas.place(x=70, y=125, anchor="nw")
         #キャンバスに画像を描画
         self.underOpen_canvas.create_image(0,0,image=self.underOpen, anchor="nw")
+
+#箱をロックする(03)========================================================================
+    def go_to_lockBox(self):
+        if self.judge == 1:
+            self.kaishi.destroy()
+            self.label1.destroy()
+            self.label2.destroy()
+            self.label3.destroy()
+            self.overOpen_canvas.destroy()
+        else:
+            self.underIn.destroy()
+            self.underLabel1.destroy()
+            self.underLabel2.destroy()
+            self.underLabel3.destroy()
+            self.underOpen_canvas.destroy()
 
 if __name__ == "__main__":
     # アプリケーション実行
