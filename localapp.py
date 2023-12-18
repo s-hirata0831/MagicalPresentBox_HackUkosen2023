@@ -1,6 +1,7 @@
 import tkinter as tk
 import customtkinter
 import os
+import time
 from PIL import Image, ImageTk
 
 FONT_TYPE = "meiryo"
@@ -209,7 +210,7 @@ class App(customtkinter.CTk):
         #キャンバスに画像を描画
         self.loadingSanta_canvas.create_image(0,0,image=self.loadingSanta, anchor="nw")
 
-#プレゼントを判定(03)========================================================================
+#プレゼントを判定(04)========================================================================
     def go_to_judgePresent(self):
         self.lockBtn.destroy()
         self.loadingSanta_canvas.destroy()
@@ -217,7 +218,13 @@ class App(customtkinter.CTk):
         self.judgeLabel = customtkinter.CTkLabel(self, text="プレゼントを確認中！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.judgeLabel.place(relx = 0.5, y = 200, anchor="center")
         self.judgePresent_image()
+        self.judgePresentFlow()
     
+    def judgePresentFlow(self):
+        time.sleep(5)
+        self.go_to_judgeResult()
+
+
     def judgePresent_image(self):
         #画像の読み込み
         self.judgePresent_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/present_big.png")
@@ -227,7 +234,11 @@ class App(customtkinter.CTk):
         self.judgePresent_canvas = customtkinter.CTkCanvas(master=self, width=self.judgePresent.width()-1, height=self.judgePresent.height()-1, bd =0)
         self.judgePresent_canvas.place(relx=0.5, y=350, anchor="center")
         #キャンバスに画像を描画
-        self.judgePresent_canvas.create_image(0,0,image=self.judgePresent, anchor="nw")        
+        self.judgePresent_canvas.create_image(0,0,image=self.judgePresent, anchor="nw")
+
+#判定結果を表示(05)========================================================================        
+    def go_to_judgeResult(self):
+        self.judgePresent_canvas.destroy()
 
 if __name__ == "__main__":
     # アプリケーション実行
