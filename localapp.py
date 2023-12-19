@@ -1,7 +1,7 @@
 import tkinter as tk
 import customtkinter
 import os
-import time
+import camera
 from PIL import Image, ImageTk
 
 FONT_TYPE = "meiryo"
@@ -213,7 +213,6 @@ class App(customtkinter.CTk):
 #プレゼントを判定(04)========================================================================
     def go_to_judgePresent(self):
         self.lockBtn.destroy()
-        self.loadingSanta_canvas.destroy()
         self.lockLabel.destroy()
         self.judgeLabel = customtkinter.CTkLabel(self, text="プレゼントを確認中！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.judgeLabel.place(relx = 0.5, y = 200, anchor="center")
@@ -221,7 +220,8 @@ class App(customtkinter.CTk):
         self.judgePresentFlow()
     
     def judgePresentFlow(self):
-        time.sleep(5)
+        image_path = "./presentImg/post.jpg"
+        camera.capture(image_path)
         self.go_to_judgeResult()
 
 
