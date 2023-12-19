@@ -1,5 +1,6 @@
 import tkinter as tk
 import customtkinter
+import time
 import os
 import camera
 from PIL import Image, ImageTk
@@ -15,6 +16,7 @@ class App(customtkinter.CTk):
         self.fonts = (FONT_TYPE, 30, "bold")
         self.displayfont = (FONT_TYPE, 50, "bold")
         self.smallFonts= (FONT_TYPE, 10)
+        self.bigFonts = (FONT_TYPE,100, "bold")
         self.corner= (50)
         #タイトルバーの非表示
         self.wm_overrideredirect(True)
@@ -214,6 +216,7 @@ class App(customtkinter.CTk):
     def go_to_judgePresent(self):
         self.lockBtn.destroy()
         self.lockLabel.destroy()
+        self.loadingSanta_canvas.destroy()
         self.judgeLabel = customtkinter.CTkLabel(self, text="プレゼントを確認中！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.judgeLabel.place(relx = 0.5, y = 200, anchor="center")
         self.judgePresent_image()
@@ -222,7 +225,7 @@ class App(customtkinter.CTk):
     def judgePresentFlow(self):
         image_path = "./presentImg/post.jpg"
         camera.capture(image_path)
-        self.go_to_judgeResult()
+        self.after(2500, self.go_to_judgeResult)
 
 
     def judgePresent_image(self):
@@ -239,7 +242,207 @@ class App(customtkinter.CTk):
 #判定結果を表示(05)========================================================================        
     def go_to_judgeResult(self):
         self.judgePresent_canvas.destroy()
-        
+        self.judgeLabel.destroy()
+        self.judgeResult_frame()
+    
+    def judgeResult_frame(self):
+        self.result = 4#判定結果(一時用，0か1か)
+        if self.result == 5:
+            print("クリスマスっぽーい")
+            self.result5_image()
+            self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+            self.resultTrueLabel.place(relx = 0.5, y = 170, anchor="center")
+            self.after(2000, self.result_next)
+        elif self.result == 4:
+            print("クリスマスっぽーい")
+            self.result4_image()
+            self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+            self.resultTrueLabel.place(relx = 0.5, y = 170, anchor="center")
+            self.after(2000, self.result_next)
+        elif self.result == 3:
+            print("クリスマスっぽーい")
+            self.result3_image()
+            self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+            self.resultTrueLabel.place(relx = 0.5, y = 170, anchor="center")
+            self.after(2000, self.result_next)
+        elif self.result == 2:
+            print("クリスマスっぽーい")
+            self.result2_image()
+            self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+            self.resultTrueLabel.place(relx = 0.5, y = 170, anchor="center")
+            self.after(2000, self.result_next)
+        elif self.result == 1:
+            print("クリスマスっぽーい")
+            self.result1_image()
+            self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+            self.resultTrueLabel.place(relx = 0.5, y = 170, anchor="center")
+            self.after(2000, self.result_next)
+
+    def result_next(self):
+        self.resultTrueLabel.destroy()
+        self.resultTrueLabel2 = customtkinter.CTkLabel(self, text="クリスマスっぽさ度",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.resultTrueLabel2.place(relx = 0.5, y = 170, anchor="center")
+        self.getPresentBtn = customtkinter.CTkButton(master=self, text="次へ", command=self.go_to_getPresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.getPresentBtn.place(x = 700, y = 50)
+
+    def result5_image(self):
+        #画像の読み込み
+        self.result_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa.png")
+        self.result = Image.open(self.result_path)
+        self.result = ImageTk.PhotoImage(self.result)
+        #画像の読み込み
+        self.gray_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa_gray.png")
+        self.gray = Image.open(self.gray_path)
+        self.gray = ImageTk.PhotoImage(self.gray)
+        #キャンバスの作成
+        self.result1_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result1_canvas.place(x=75, y=225)
+        #キャンバスに画像を描画
+        self.result1_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #2体目
+        self.result2_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result2_canvas.place(x=255, y=225)
+        self.result2_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #3体目
+        self.result3_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result3_canvas.place(x=435, y=225)
+        self.result3_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #4体目
+        self.result4_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result4_canvas.place(x=615, y=225)
+        self.result4_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #5体目
+        self.result5_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result5_canvas.place(x=795, y=225)
+        self.result5_canvas.create_image(0,0,image=self.result, anchor="nw")
+
+    def result4_image(self):
+        #画像の読み込み
+        self.result_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa.png")
+        self.result = Image.open(self.result_path)
+        self.result = ImageTk.PhotoImage(self.result)
+        #画像の読み込み
+        self.gray_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa_gray.png")
+        self.gray = Image.open(self.gray_path)
+        self.gray = ImageTk.PhotoImage(self.gray)
+        #キャンバスの作成
+        self.result1_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result1_canvas.place(x=75, y=225)
+        #キャンバスに画像を描画
+        self.result1_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #2体目
+        self.result2_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result2_canvas.place(x=255, y=225)
+        self.result2_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #3体目
+        self.result3_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result3_canvas.place(x=435, y=225)
+        self.result3_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #4体目
+        self.result4_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result4_canvas.place(x=615, y=225)
+        self.result4_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #5体目
+        self.result5_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result5_canvas.place(x=795, y=225)
+        self.result5_canvas.create_image(0,0,image=self.gray, anchor="nw")
+
+    def result3_image(self):
+        #画像の読み込み
+        self.result_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa.png")
+        self.result = Image.open(self.result_path)
+        self.result = ImageTk.PhotoImage(self.result)
+        #画像の読み込み
+        self.gray_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa_gray.png")
+        self.gray = Image.open(self.gray_path)
+        self.gray = ImageTk.PhotoImage(self.gray)
+        #キャンバスの作成
+        self.result1_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result1_canvas.place(x=75, y=225)
+        #キャンバスに画像を描画
+        self.result1_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #2体目
+        self.result2_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result2_canvas.place(x=255, y=225)
+        self.result2_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #3体目
+        self.result3_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result3_canvas.place(x=435, y=225)
+        self.result3_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #4体目
+        self.result4_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result4_canvas.place(x=615, y=225)
+        self.result4_canvas.create_image(0,0,image=self.gray, anchor="nw")
+        #5体目
+        self.result5_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result5_canvas.place(x=795, y=225)
+        self.result5_canvas.create_image(0,0,image=self.gray, anchor="nw")
+
+    def result2_image(self):
+        #画像の読み込み
+        self.result_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa.png")
+        self.result02 = Image.open(self.result_path)
+        self.result02 = ImageTk.PhotoImage(self.result02)
+        #画像の読み込み
+        self.gray_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa_gray.png")
+        self.gray02 = Image.open(self.gray_path)
+        self.gray = ImageTk.PhotoImage(self.gray)
+        #キャンバスの作成
+        self.result1_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result1_canvas.place(x=75, y=225)
+        #キャンバスに画像を描画
+        self.result1_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #2体目
+        self.result2_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result2_canvas.place(x=255, y=225)
+        self.result2_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #3体目
+        self.result3_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result3_canvas.place(x=435, y=225)
+        self.result3_canvas.create_image(0,0,image=self.gray, anchor="nw")
+        #4体目
+        self.result4_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result4_canvas.place(x=615, y=225)
+        self.result4_canvas.create_image(0,0,image=self.gray, anchor="nw")
+        #5体目
+        self.result5_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result5_canvas.place(x=795, y=225)
+        self.result5_canvas.create_image(0,0,image=self.gray, anchor="nw")
+
+    def result1_image(self):
+        #画像の読み込み
+        self.result_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa.png")
+        self.result = Image.open(self.result_path)
+        self.result = ImageTk.PhotoImage(self.result)
+        #画像の読み込み
+        self.gray_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/santa_gray.png")
+        self.gray = Image.open(self.gray_path)
+        self.gray = ImageTk.PhotoImage(self.gray)
+        #キャンバスの作成
+        self.result1_canvas = customtkinter.CTkCanvas(master=self, width=self.result.width()-1, height=self.result.height()-1, bd =0)
+        self.result1_canvas.place(x=75, y=225)
+        #キャンバスに画像を描画
+        self.result1_canvas.create_image(0,0,image=self.result, anchor="nw")
+        #2体目
+        self.result2_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result2_canvas.place(x=255, y=225)
+        self.result2_canvas.create_image(0,0,image=self.gray, anchor="nw")
+        #3体目
+        self.result3_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result3_canvas.place(x=435, y=225)
+        self.result3_canvas.create_image(0,0,image=self.gray, anchor="nw")
+        #4体目
+        self.result4_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result4_canvas.place(x=615, y=225)
+        self.result4_canvas.create_image(0,0,image=self.gray, anchor="nw")
+        #5体目
+        self.result5_canvas = customtkinter.CTkCanvas(master=self, width=self.gray.width()-1, height=self.gray.height()-1, bd =0)
+        self.result5_canvas.place(x=795, y=225)
+        self.result5_canvas.create_image(0,0,image=self.gray, anchor="nw")
+
+#プレゼント受け取り(06)========================================================================  
+    def go_to_getPresent(self):
+        print("get!")
 if __name__ == "__main__":
     # アプリケーション実行
     app = App()
