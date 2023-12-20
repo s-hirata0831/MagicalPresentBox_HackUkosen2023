@@ -2,7 +2,7 @@ import tkinter as tk
 import customtkinter
 import time
 import os
-#import camera
+import servo
 from PIL import Image, ImageTk
 
 FONT_TYPE = "meiryo"
@@ -187,19 +187,26 @@ class App(customtkinter.CTk):
             self.label2.destroy()
             self.label3.destroy()
             self.overOpen_canvas.destroy()
-            self.lockBox_frame()
+            self.lockBox_frame_true()
         else:
             self.underIn.destroy()
             self.underLabel1.destroy()
             self.underLabel2.destroy()
             self.underLabel3.destroy()
             self.underOpen_canvas.destroy()
-            self.lockBox_frame()
+            self.lockBox_frame_false()
 
-    def lockBox_frame(self):
+    def lockBox_frame_true(self):
         self.lockLabel = customtkinter.CTkLabel(self, text="箱をロックします。ボタンをタッチ！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.lockLabel.place(relx = 0.5, y = 200, anchor="center")
-        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=self.go_to_judgePresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=servo.lock(True),font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.lockBtn.place(relx = 0.5, y = 520, anchor="center")
+        self.loaddingSanta_image()
+
+    def lockBox_frame_false(self):
+        self.lockLabel = customtkinter.CTkLabel(self, text="箱をロックします。ボタンをタッチ！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.lockLabel.place(relx = 0.5, y = 200, anchor="center")
+        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=servo.lock(False),font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.lockBtn.place(relx = 0.5, y = 520, anchor="center")
         self.loaddingSanta_image()
     
