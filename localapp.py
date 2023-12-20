@@ -2,7 +2,7 @@ import tkinter as tk
 import customtkinter
 import time
 import os
-import camera
+#import camera
 from PIL import Image, ImageTk
 
 FONT_TYPE = "meiryo"
@@ -40,6 +40,9 @@ class App(customtkinter.CTk):
 
         #全体の背景色設定
         self.config(bg="#e3e3e3")
+
+        #初期状態では上が空いている。Trueのときは上が空いている
+        self.unlockedBox = True
 
         #タイトル画面へ移行
         self.title_frame()
@@ -105,9 +108,8 @@ class App(customtkinter.CTk):
         self.openBox_frame()
 
     def openBox_frame(self):
-        self.judge = 0
         #どちらの箱が空いているか判定
-        if self.judge == 1:
+        if self.unlockedBox == True:
             print("上の箱が空いています")
             self.overBox_open()
         else:
@@ -179,7 +181,7 @@ class App(customtkinter.CTk):
 
 #箱をロックする(03)========================================================================
     def go_to_lockBox(self):
-        if self.judge == 1:
+        if self.unlockedBox == True:
             self.kaishi.destroy()
             self.label1.destroy()
             self.label2.destroy()
@@ -224,7 +226,7 @@ class App(customtkinter.CTk):
     
     def judgePresentFlow(self):
         image_path = "./presentImg/post.jpg"
-        camera.capture(image_path)
+        #camera.capture(image_path)
         self.after(2500, self.go_to_judgeResult)
 
 
@@ -442,7 +444,18 @@ class App(customtkinter.CTk):
 
 #プレゼント受け取り(06)========================================================================  
     def go_to_getPresent(self):
-        print("get!")
+        if self.unlockedBox == True:
+            self.unlockedBox = False
+        else:
+            self.unlockedBox = True
+        self.result1_canvas.destroy()
+        self.result2_canvas.destroy()
+        self.result3_canvas.destroy()
+        self.result4_canvas.destroy()
+        self.result5_canvas.destroy()
+        self.resultTrueLabel2.destroy()
+        self.getPresentBtn.destroy()
+        self.title_frame()
 if __name__ == "__main__":
     # アプリケーション実行
     app = App()
