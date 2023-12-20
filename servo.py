@@ -18,8 +18,7 @@ def lock(Islock,NowServo): #鍵の開閉の関数IslockがFalseで閉じるTrue�
     elif Islock == True:
         set_angle(0,NowServo)
         time.sleep(1)
-lock(False,1)
-lock(True,1)
+
 
 
 
