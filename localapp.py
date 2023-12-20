@@ -199,14 +199,14 @@ class App(customtkinter.CTk):
     def lockBox_frame_true(self):
         self.lockLabel = customtkinter.CTkLabel(self, text="箱をロックします。ボタンをタッチ！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.lockLabel.place(relx = 0.5, y = 200, anchor="center")
-        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=servo.lock(True),font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=self.go_to_judgePresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.lockBtn.place(relx = 0.5, y = 520, anchor="center")
         self.loaddingSanta_image()
 
     def lockBox_frame_false(self):
         self.lockLabel = customtkinter.CTkLabel(self, text="箱をロックします。ボタンをタッチ！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.lockLabel.place(relx = 0.5, y = 200, anchor="center")
-        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=servo.lock(False),font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.lockBtn = customtkinter.CTkButton(master=self, text="ロック", command=self.go_to_judgePresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.lockBtn.place(relx = 0.5, y = 520, anchor="center")
         self.loaddingSanta_image()
     
@@ -223,6 +223,7 @@ class App(customtkinter.CTk):
 
 #プレゼントを判定(04)========================================================================
     def go_to_judgePresent(self):
+        servo.lock(True,True)
         self.lockBtn.destroy()
         self.lockLabel.destroy()
         self.loadingSanta_canvas.destroy()
