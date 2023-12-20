@@ -4,8 +4,23 @@ import time
 import os
 import servo
 from PIL import Image, ImageTk
+import firebase_admin
+from firebase_admin import storage
+from dotenv import load_dotenv
 
 FONT_TYPE = "meiryo"
+
+#Firebaseプロジェクトの設定
+load_dotenv()
+firebase_admin.initialize_app(
+    service_account_credentials=(os.environ['API_KEY']),
+    auth_domain=(os.environ['AUTH_DOMAIN']),
+    project_id=(os.environ['PROJECT_ID']),
+    storage_bucket=(os.environ['STORAGE_BUCKET']),
+)
+
+#Post a Image
+storage.bucket(os.environ['STORAGE_BUCKET']).put("post.jpg", open("./presentImg/post.jpg", "rb"))
 
 class App(customtkinter.CTk):
 

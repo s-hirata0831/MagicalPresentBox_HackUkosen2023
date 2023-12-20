@@ -24,3 +24,11 @@ Input this command in Terminal(only Debian)
 ```
 sudo apt-get install tk-dev
 ```
+
+## How to use .env file
+
+Input this command in Terminal
+
+```
+pip install python-dotenv
+```
