@@ -1,15 +1,12 @@
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
-# SPDX-License-Identifier: MIT
-
 import time
 import board
 import neopixel
 
 
-
+#ピンの指定
 pixel_pin = board.D18
 
-
+#ledの数
 num_pixels = 60
 
 
@@ -38,7 +35,7 @@ def wheel(pos):
         b = int(255 - pos * 3)
     return (r, g, b) if ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
 
-
+#rainbow_cycle(色の遷移する速さ)
 def rainbow_cycle(wait):
     for j in range(255):
         for i in range(num_pixels):
@@ -46,7 +43,7 @@ def rainbow_cycle(wait):
             pixels[i] = wheel(pixel_index & 255)
         pixels.show()
         time.sleep(wait)
-
+#ledを消灯する
 def No_led():
     pixels.fill((0,0,0))
     pixels.show()
