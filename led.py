@@ -43,7 +43,7 @@ def rainbow_cycle(wait,LED):
     if LED:
         pixels = neopixel.NeoPixel(pixel_pin1, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
     else:
-        pixels = neopixel.Neopixel(pixel_pin2, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
+        pixels = neopixel.NeoPOixel(pixel_pin2, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
     for j in range(255):
         for i in range(num_pixels):
             pixel_index = (i * 256 // num_pixels) + j
@@ -55,6 +55,6 @@ def No_led(LED):
     if LED:
         pixels = neopixel.NeoPixel(pixel_pin1, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
     else:
-        pixels = neopixel.Neopixel(pixel_pin2, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
+        pixels = neopixel.NeoPixel(pixel_pin2, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
     pixels.fill((0,0,0))
     pixels.show()
