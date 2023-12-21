@@ -4,6 +4,7 @@ import time
 import os
 import servo
 import led
+import led2
 from PIL import Image, ImageTk
 #import firebase_admin
 #from firebase_admin import credentials, storage
@@ -122,11 +123,11 @@ class App(customtkinter.CTk):
         #どちらの箱が空いているか判定
         if self.unlockedBox == True:
             print("上の箱が空いています")
-            led.rainbow_cycle(0.01, True)
+            led.rainbow_cycle(0.01)
             self.overBox_open()
         else:
             print("下の箱が空いています")
-            led.rainbow_cycle(0.01, False)
+            led2.rainbow_cycle(0.01)
             self.underBox_open()
 
     def header_image(self):
@@ -200,7 +201,7 @@ class App(customtkinter.CTk):
             self.label2.destroy()
             self.label3.destroy()
             self.overOpen_canvas.destroy()
-            led.No_led(True)
+            led.No_led()
             self.lockBox_frame()
         else:
             self.underIn.destroy()
@@ -208,7 +209,7 @@ class App(customtkinter.CTk):
             self.underLabel2.destroy()
             self.underLabel3.destroy()
             self.underOpen_canvas.destroy()
-            led.No_led(False)
+            led2.No_led()
             self.lockBox_frame()
 
     def lockBox_frame(self):
