@@ -484,9 +484,9 @@ class App(customtkinter.CTk):
 
     def canGetPresent_frame(self):
         self.canGetLabel = customtkinter.CTkLabel(self, text="プレゼント交換成立！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
-        self.canGetLabel.place(x = 500, y = 300)
+        self.canGetLabel.place(x = 500, y = 250)
         self.canGetBtn = customtkinter.CTkButton(master=self, text="→受け取る←", command=self.go_to_getPresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
-        self.canGetBtn.place(x = 700, y = 500)
+        self.canGetBtn.place(x = 610, y = 400)
         self.judgeTrue_image()
 
     def cannotGetPresent(self):
