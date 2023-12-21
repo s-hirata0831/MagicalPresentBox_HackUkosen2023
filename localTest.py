@@ -499,6 +499,10 @@ class App(customtkinter.CTk):
         self.cannotGetLabel.destroy()
         self.retryBtn.destroy()
         self.judgeFalse_canvas.destroy()
+        #if self.unlockedBox == True:
+            #servo.lock(True, False)
+        #else:
+            #servo.lock(False, False)
         self.openBox_frame()
 
     def judgeTrue_image(self):
