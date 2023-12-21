@@ -6,18 +6,14 @@ import servo
 import led
 import led2
 from PIL import Image, ImageTk
-#import firebase_admin
-#from firebase_admin import credentials, storage
+import firebase_admin
+from firebase_admin import credentials, storage
 
 FONT_TYPE = "meiryo"
 
-#cred=credentials.Certificate("magicalpresentbox-firebase-adminsdk-mmdua-11d5c8829a.json")
-#firebase_admin.initialize_app(cred)
-#bucket = storage.bucket("magicalpresentbox.appspot.com")
-
-#Upload file
-#blob = bucket.blob("post.jpg")
-#blob.upload_from_filename("./presentImg/post.jpg")
+cred=credentials.Certificate("filename.json")
+firebase_admin.initialize_app(cred)
+bucket = storage.bucket("magicalpresentbox.appspot.com")
 
 class App(customtkinter.CTk):
 
@@ -478,6 +474,9 @@ class App(customtkinter.CTk):
     def judgeGetPresent(self):
         if self.resultNum >= self.beforePresent - 1:
             self.canGetPresent_frame()
+            #FirebaseCloudStorageに入れたプレゼントの写真をアップロード
+            blob = bucket.blob("post.jpg")
+            blob.upload_from_filename("./presentImg/post.jpg")
         else:
             self.cannotGetPresent_frame()
 
