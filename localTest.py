@@ -11,7 +11,7 @@ from firebase_admin import credentials, storage
 
 FONT_TYPE = "meiryo"
 
-cred=credentials.Certificate("filename.json")
+cred=credentials.Certificate("magicalpresentbox-firebase-adminsdk-mmdua-2ad3d08eca.json")
 firebase_admin.initialize_app(cred)
 bucket = storage.bucket("magicalpresentbox.appspot.com")
 
