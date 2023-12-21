@@ -491,9 +491,15 @@ class App(customtkinter.CTk):
     def cannotGetPresent_frame(self):
         self.cannotGetLabel = customtkinter.CTkLabel(self, text="プレゼント交換失敗！",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
         self.cannotGetLabel.place(x = 500, y = 250)
-        self.retryBtn = customtkinter.CTkButton(master=self, text="リトライする", command=self.go_to_getPresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.retryBtn = customtkinter.CTkButton(master=self, text="リトライする", command=self.go_to_retry,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.retryBtn.place(x = 610, y = 400)
         self.judgeFalse_image()
+
+    def go_to_retry(self):
+        self.cannotGetLabel.destroy()
+        self.retryBtn.destroy()
+        self.judgeFalse_canvas.destroy()
+        self.openBox_frame()
 
     def judgeTrue_image(self):
         #画像の読み込み
