@@ -56,6 +56,9 @@ class App(customtkinter.CTk):
         #初期状態では上が空いている。Trueのときは上が空いている
         self.unlockedBox = True
 
+        #前の判定結果格納
+        self.beforePresent = 1
+
         #タイトル画面へ移行
         self.title_frame()
 
@@ -249,7 +252,6 @@ class App(customtkinter.CTk):
         #camera.capture(image_path)
         self.after(2500, self.go_to_judgeResult)
 
-
     def judgePresent_image(self):
         #画像の読み込み
         self.judgePresent_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/present_big.png")
@@ -302,7 +304,7 @@ class App(customtkinter.CTk):
 
     def result_next(self):
         self.resultTrueLabel.destroy()
-        self.resultTrueLabel2 = customtkinter.CTkLabel(self, text="クリスマスっぽさ",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.resultTrueLabel2 = customtkinter.CTkLabel(self, text="クリスマスっぽさ"+str(self.result),  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.resultTrueLabel2.place(relx = 0.5, y = 170, anchor="center")
         self.getPresentBtn = customtkinter.CTkButton(master=self, text="次へ", command=self.go_to_getPresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.getPresentBtn.place(x = 700, y = 50)
@@ -462,12 +464,8 @@ class App(customtkinter.CTk):
         self.result5_canvas.place(x=795, y=225)
         self.result5_canvas.create_image(0,0,image=self.gray, anchor="nw")
 
-#プレゼント受け取り(06)========================================================================  
-    def go_to_getPresent(self):
-        if self.unlockedBox == True:
-            self.unlockedBox = False
-        else:
-            self.unlockedBox = True
+#プレゼントがもらえるかどうか(06)========================================================================  
+    def go_to_canGetPresent(self):
         self.result1_canvas.destroy()
         self.result2_canvas.destroy()
         self.result3_canvas.destroy()
@@ -475,7 +473,43 @@ class App(customtkinter.CTk):
         self.result5_canvas.destroy()
         self.resultTrueLabel2.destroy()
         self.getPresentBtn.destroy()
+    
+    def judgeGetPresent(self):
+        print("You can")
+        if self.result - 1 >= self.beforePresent:
+            self.canGetPresent_frame()
+        else:
+            self.cannotGetPresent()
+
+    def canGetPresent_frame(self):
+        self.canGetLabel = customtkinter.CTkLabel(self, text="プレゼント交換成立！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.canGetLabel.place(x = 1000, y = 170)
+        self.judgeTrue_image()
+
+    def cannotGetPresent(self):
+        print("You cannot")
+
+    def judgeTrue_image(self):
+        #画像の読み込み
+        self.judgeTrue_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/judgeTrue.png")
+        self.judgeTrue = Image.open(self.judgeTrue_path)
+        self.judgeTrue = ImageTk.PhotoImage(self.judgeTrue)
+        #キャンバスの作成
+        self.judgeTrue_canvas = customtkinter.CTkCanvas(master=self, width=self.judgeTrue.width()-1, height=self.judgeTrue.height()-1, bd =0)
+        self.judgeTrue_canvas.place(x=25, y=150)
+        #キャンバスに画像を描画
+        self.judgeTrue_canvas.create_image(0,0,image=self.judgeTrue, anchor="nw")
+
+#プレゼントをゲット(07)========================================================================  
+    def go_to_getPresent(self):
+        if self.unlockedBox == True:
+            self.unlockedBox = False
+        else:
+            self.unlockedBox = True
+        self.header_canvas.destroy()
+        self.closeB.destroy()
         self.title_frame()
+
 if __name__ == "__main__":
     # アプリケーション実行
     app = App()
