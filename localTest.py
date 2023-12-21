@@ -577,7 +577,7 @@ class App(customtkinter.CTk):
         self.getOver_canvas = customtkinter.CTkCanvas(master=self, width=self.getOver.width()-1, height=self.getOver.height()-1, bd =0)
         self.getOver_canvas.place(x=70, y=125, anchor="nw")
         #キャンバスに画像を描画
-        self.overOpen_canvas.create_image(0,0,image=self.getOver, anchor="nw")
+        self.getOver_canvas.create_image(0,0,image=self.getOver, anchor="nw")
 
     def getUnder_image(self):
         #画像の読み込み
@@ -588,7 +588,7 @@ class App(customtkinter.CTk):
         self.getUnder_canvas = customtkinter.CTkCanvas(master=self, width=self.getUnder.width()-1, height=self.getUnder.height()-1, bd =0)
         self.getUnder_canvas.place(x=70, y=125, anchor="nw")
         #キャンバスに画像を描画
-        self.overUnder_canvas.create_image(0,0,image=self.getUnder, anchor="nw")
+        self.getUnder_canvas.create_image(0,0,image=self.getUnder, anchor="nw")
 
 #エンドロール(08)========================================================================  
     def go_to_endRoll(self):
