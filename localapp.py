@@ -5,8 +5,8 @@ import os
 import servo
 import led
 from PIL import Image, ImageTk
-import firebase_admin
-from firebase_admin import credentials, storage
+#import firebase_admin
+#from firebase_admin import credentials, storage
 
 FONT_TYPE = "meiryo"
 
@@ -200,6 +200,7 @@ class App(customtkinter.CTk):
             self.label2.destroy()
             self.label3.destroy()
             self.overOpen_canvas.destroy()
+            led.No_led(True)
             self.lockBox_frame()
         else:
             self.underIn.destroy()
@@ -207,6 +208,7 @@ class App(customtkinter.CTk):
             self.underLabel2.destroy()
             self.underLabel3.destroy()
             self.underOpen_canvas.destroy()
+            led.No_led(False)
             self.lockBox_frame()
 
     def lockBox_frame(self):
