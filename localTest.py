@@ -270,32 +270,32 @@ class App(customtkinter.CTk):
         self.judgeResult_frame()
     
     def judgeResult_frame(self):
-        self.result = 4#判定結果(一時用，0か1か)
-        if self.result == 5:
+        self.resultNum = 4#判定結果(一時用，0か1か)
+        if self.resultNum == 5:
             print("クリスマスっぽーい")
             self.result5_image()
             self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
             self.resultTrueLabel.place(relx = 0.5, y = 170, anchor="center")
             self.after(2000, self.result_next)
-        elif self.result == 4:
+        elif self.resultNum == 4:
             print("クリスマスっぽーい")
             self.result4_image()
             self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
             self.resultTrueLabel.place(relx = 0.5, y = 170, anchor="center")
             self.after(2000, self.result_next)
-        elif self.result == 3:
+        elif self.resultNum == 3:
             print("クリスマスっぽーい")
             self.result3_image()
             self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
             self.resultTrueLabel.place(relx = 0.5, y = 170, anchor="center")
             self.after(2000, self.result_next)
-        elif self.result == 2:
+        elif self.resultNum == 2:
             print("クリスマスっぽーい")
             self.result2_image()
             self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
             self.resultTrueLabel.place(relx = 0.5, y = 170, anchor="center")
             self.after(2000, self.result_next)
-        elif self.result == 1:
+        elif self.resultNum == 1:
             print("クリスマスっぽーい")
             self.result1_image()
             self.resultTrueLabel = customtkinter.CTkLabel(self, text="AIによる確認完了!",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
@@ -304,9 +304,9 @@ class App(customtkinter.CTk):
 
     def result_next(self):
         self.resultTrueLabel.destroy()
-        self.resultTrueLabel2 = customtkinter.CTkLabel(self, text="クリスマスっぽさ"+str(self.result),  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.resultTrueLabel2 = customtkinter.CTkLabel(self, text="クリスマスっぽさ"+str(self.resultNum),  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.resultTrueLabel2.place(relx = 0.5, y = 170, anchor="center")
-        self.getPresentBtn = customtkinter.CTkButton(master=self, text="次へ", command=self.go_to_getPresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.getPresentBtn = customtkinter.CTkButton(master=self, text="次へ", command=self.go_to_canGetPresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.getPresentBtn.place(x = 700, y = 50)
 
     def result5_image(self):
@@ -473,17 +473,18 @@ class App(customtkinter.CTk):
         self.result5_canvas.destroy()
         self.resultTrueLabel2.destroy()
         self.getPresentBtn.destroy()
+        self.judgeGetPresent()
     
     def judgeGetPresent(self):
         print("You can")
-        if self.result - 1 >= self.beforePresent:
+        if self.resultNum >= self.beforePresent - 1:
             self.canGetPresent_frame()
         else:
             self.cannotGetPresent()
 
     def canGetPresent_frame(self):
         self.canGetLabel = customtkinter.CTkLabel(self, text="プレゼント交換成立！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
-        self.canGetLabel.place(x = 1000, y = 170)
+        self.canGetLabel.place(x = 500, y = 170)
         self.judgeTrue_image()
 
     def cannotGetPresent(self):
@@ -496,7 +497,7 @@ class App(customtkinter.CTk):
         self.judgeTrue = ImageTk.PhotoImage(self.judgeTrue)
         #キャンバスの作成
         self.judgeTrue_canvas = customtkinter.CTkCanvas(master=self, width=self.judgeTrue.width()-1, height=self.judgeTrue.height()-1, bd =0)
-        self.judgeTrue_canvas.place(x=25, y=150)
+        self.judgeTrue_canvas.place(x=5, y=190)
         #キャンバスに画像を描画
         self.judgeTrue_canvas.create_image(0,0,image=self.judgeTrue, anchor="nw")
 
