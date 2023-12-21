@@ -611,7 +611,7 @@ class App(customtkinter.CTk):
         self.endLabel = customtkinter.CTkButton(master=self, text="最初に戻る", command=self.go_to_replay,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
         self.endLabel.place(x = 585, y = 470)
         self.endLabel1 = customtkinter.CTkLabel(self, text="使ってくれてありがとう",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
-        self.endLabel1.place(x = 515, y = 200)
+        self.endLabel1.place(x = 475, y = 200)
         self.endLabel2 = customtkinter.CTkLabel(self, text="QRコードから皆の",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
         self.endLabel2.place(x = 515, y = 270)
         self.endLabel3 = customtkinter.CTkLabel(self, text="プレゼントを覗こう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
