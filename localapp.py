@@ -4,8 +4,18 @@ import time
 import os
 import servo
 from PIL import Image, ImageTk
+import firebase_admin
+from firebase_admin import credentials, storage
 
 FONT_TYPE = "meiryo"
+
+#cred=credentials.Certificate("magicalpresentbox-firebase-adminsdk-mmdua-11d5c8829a.json")
+#firebase_admin.initialize_app(cred)
+#bucket = storage.bucket("magicalpresentbox.appspot.com")
+
+#Upload file
+#blob = bucket.blob("post.jpg")
+#blob.upload_from_filename("./presentImg/post.jpg")
 
 class App(customtkinter.CTk):
 
