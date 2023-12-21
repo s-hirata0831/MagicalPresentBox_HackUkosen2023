@@ -604,6 +604,26 @@ class App(customtkinter.CTk):
             self.getUnderCompleteLabel1.destroy()
             self.getUnderCompleteLabel2.destroy()
             self.getUnderCompleteLabel3.destroy()
+        self.endRoll_frame()
+
+    def endRoll_frame(self):
+        self.getOver_image()
+        self.endLabel = customtkinter.CTkButton(master=self, text="最初に戻る", command=self.go_to_replay,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.endLabel.place(x = 585, y = 470)
+        self.endLabel1 = customtkinter.CTkLabel(self, text="使ってくれてありがとう",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
+        self.endLabel1.place(x = 515, y = 200)
+        self.endLabel2 = customtkinter.CTkLabel(self, text="QRコードから皆の",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.endLabel2.place(x = 515, y = 270)
+        self.endLabel3 = customtkinter.CTkLabel(self, text="プレゼントを覗こう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.endLabel3.place(x = 515, y = 340)
+    
+    #最初に戻る
+    def go_to_replay(self):
+        self.getOver_canvas.destroy()
+        self.endLabel.destroy()
+        self.endLabel1.destroy()
+        self.endLabel2.destroy()
+        self.endLabel3.destroy()
         self.header_canvas.destroy()
         self.closeB.destroy()
         self.title_frame()
