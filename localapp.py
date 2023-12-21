@@ -2,7 +2,7 @@ import tkinter as tk
 import customtkinter
 import time
 import os
-#import camera
+import servo
 from PIL import Image, ImageTk
 
 FONT_TYPE = "meiryo"
@@ -216,6 +216,10 @@ class App(customtkinter.CTk):
 
 #プレゼントを判定(04)========================================================================
     def go_to_judgePresent(self):
+        if self.unlockedBox == True:
+            servo.lock(True,True)
+        else:
+            servo.lock(False, True)
         self.lockBtn.destroy()
         self.lockLabel.destroy()
         self.loadingSanta_canvas.destroy()
