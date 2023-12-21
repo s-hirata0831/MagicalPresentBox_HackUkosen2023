@@ -509,6 +509,9 @@ class App(customtkinter.CTk):
             self.unlockedBox = False
         else:
             self.unlockedBox = True
+        self.judgeTrue_canvas.destroy()
+        self.canGetLabel.destroy()
+        self.canGetBtn.destroy()
         self.header_canvas.destroy()
         self.closeB.destroy()
         self.title_frame()
