@@ -7,7 +7,7 @@ import neopixel
 
 
 
-pixel_pin = board.D18
+pixel_pin = board.D27
 
 
 num_pixels = 60
@@ -16,7 +16,6 @@ num_pixels = 60
 ORDER = neopixel.GRB
 
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER)
-
 
 def wheel(pos):
     
@@ -48,5 +47,6 @@ def rainbow_cycle(wait):
         time.sleep(wait)
 
 def No_led():
+  
     pixels.fill((0,0,0))
     pixels.show()
