@@ -513,7 +513,7 @@ class App(customtkinter.CTk):
         self.judgeFalse = ImageTk.PhotoImage(self.judgeFalse)
         #キャンバスの作成
         self.judgeFalse_canvas = customtkinter.CTkCanvas(master=self, width=self.judgeFalse.width()-1, height=self.judgeFalse.height()-1, bd =0)
-        self.judgeFalse_canvas.place(x=5, y=190)
+        self.judgeFalse_canvas.place(x=75, y=190)
         #キャンバスに画像を描画
         self.judgeFalse_canvas.create_image(0,0,image=self.judgeFalse, anchor="nw")
 
