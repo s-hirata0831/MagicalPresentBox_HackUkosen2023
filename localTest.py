@@ -3,8 +3,8 @@ import customtkinter
 import time
 import os
 import servo
-import led
-import led2
+#import led
+#import led2
 from PIL import Image, ImageTk
 import firebase_admin
 from firebase_admin import credentials, storage
