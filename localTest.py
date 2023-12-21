@@ -476,11 +476,10 @@ class App(customtkinter.CTk):
         self.judgeGetPresent()
     
     def judgeGetPresent(self):
-        print("You can")
         if self.resultNum >= self.beforePresent - 1:
-            self.canGetPresent_frame()
+            self.cannotGetPresent_frame()
         else:
-            self.cannotGetPresent()
+            self.cannotGetPresent_frame()
 
     def canGetPresent_frame(self):
         self.canGetLabel = customtkinter.CTkLabel(self, text="プレゼント交換成立！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
@@ -489,8 +488,12 @@ class App(customtkinter.CTk):
         self.canGetBtn.place(x = 610, y = 400)
         self.judgeTrue_image()
 
-    def cannotGetPresent(self):
-        print("You cannot")
+    def cannotGetPresent_frame(self):
+        self.cannotGetLabel = customtkinter.CTkLabel(self, text="プレゼント交換失敗！",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
+        self.cannotGetLabel.place(x = 500, y = 250)
+        self.retryBtn = customtkinter.CTkButton(master=self, text="リトライする", command=self.go_to_getPresent,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.retryBtn.place(x = 610, y = 400)
+        self.judgeFalse_image()
 
     def judgeTrue_image(self):
         #画像の読み込み
@@ -502,6 +505,17 @@ class App(customtkinter.CTk):
         self.judgeTrue_canvas.place(x=5, y=190)
         #キャンバスに画像を描画
         self.judgeTrue_canvas.create_image(0,0,image=self.judgeTrue, anchor="nw")
+
+    def judgeFalse_image(self):
+        #画像の読み込み
+        self.judgeFalse_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/judgeFalse.png")
+        self.judgeFalse = Image.open(self.judgeFalse_path)
+        self.judgeFalse = ImageTk.PhotoImage(self.judgeFalse)
+        #キャンバスの作成
+        self.judgeFalse_canvas = customtkinter.CTkCanvas(master=self, width=self.judgeFalse.width()-1, height=self.judgeFalse.height()-1, bd =0)
+        self.judgeFalse_canvas.place(x=5, y=190)
+        #キャンバスに画像を描画
+        self.judgeFalse_canvas.create_image(0,0,image=self.judgeFalse, anchor="nw")
 
 #プレゼントをゲット(07)========================================================================  
     def go_to_getPresent(self):
