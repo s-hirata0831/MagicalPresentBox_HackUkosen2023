@@ -477,7 +477,7 @@ class App(customtkinter.CTk):
     
     def judgeGetPresent(self):
         if self.resultNum >= self.beforePresent - 1:
-            self.cannotGetPresent_frame()
+            self.canGetPresent_frame()
         else:
             self.cannotGetPresent_frame()
 
@@ -536,9 +536,65 @@ class App(customtkinter.CTk):
         self.judgeTrue_canvas.destroy()
         self.canGetLabel.destroy()
         self.canGetBtn.destroy()
+        self.getPresent_frame()
+    
+    def getPresent_frame(self):
+        if self.unlockedBox == True:
+            print("上の箱からプレゼントを取り出せます")
+            self.getOverB()
+        else:
+            print("下の箱からプレゼントを取り出せます")
+            self.getUnderB()
+    
+    def getOverB(self):
+        self.getOver_image()
+        self.getOverComplete = customtkinter.CTkButton(master=self, text="プレゼントを受け取った！", command=self.go_to_endRoll,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.getOverComplete.place(x = 585, y = 470)
+        self.getOverCompletelabel1 = customtkinter.CTkLabel(self, text="上の箱の扉を開けて",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
+        self.getOverCompletelabel1.place(x = 515, y = 200)
+        self.getOverCompletelabel2 = customtkinter.CTkLabel(self, text="あなたへのプレゼント",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.getOverCompletelabel2.place(x = 515, y = 270)
+        self.getOverCompletelabel3 = customtkinter.CTkLabel(self, text="を受け取ろう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.getOverCompletelabel3.place(x = 515, y = 340)
+
+    def getUnderB(self):
+        self.getUnder_image()
+        self.getUnderComplete = customtkinter.CTkButton(master=self, text="プレゼントを受け取った！", command=self.go_to_endRoll,font=self.fonts,width=220, height=50, corner_radius=self.corner, text_color="white")
+        self.getUnderComplete.place(x = 585, y = 470)
+        self.getUnderCompleteLabel1 = customtkinter.CTkLabel(self, text="下の箱の扉を開けて",  font=self.displayfont, text_color="red", bg_color="#e3e3e3")
+        self.getUnderCompleteLabel1.place(x = 515, y = 200)
+        self.getUnderCompleteLabel2 = customtkinter.CTkLabel(self, text="あなたへのプレゼント",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.getUnderCompleteLabel2.place(x = 515, y = 270)
+        self.getUnderCompleteLabel3 = customtkinter.CTkLabel(self, text="を受け取ろう！",  font=self.displayfont, text_color="black", bg_color="#e3e3e3")
+        self.getUnderCompleteLabel3.place(x = 515, y = 340)
+
+    def getOver_image(self):
+        #画像の読み込み
+        self.getOver_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/getOverBox.png")
+        self.getOver = Image.open(self.getOver_path)
+        self.getOver = ImageTk.PhotoImage(self.getOver)
+        #キャンバスの作成
+        self.getOver_canvas = customtkinter.CTkCanvas(master=self, width=self.getOver.width()-1, height=self.getOver.height()-1, bd =0)
+        self.getOver_canvas.place(x=70, y=125, anchor="nw")
+        #キャンバスに画像を描画
+        self.overOpen_canvas.create_image(0,0,image=self.getOver, anchor="nw")
+
+    def getUnder_image(self):
+        #画像の読み込み
+        self.getUnder_path = os.path.join(os.path.dirname(__file__), R"./src_localapp/getUnderBox.png")
+        self.getUnder = Image.open(self.getUnder_path)
+        self.getUnder = ImageTk.PhotoImage(self.getUnder)
+        #キャンバスの作成
+        self.getUnder_canvas = customtkinter.CTkCanvas(master=self, width=self.getUnder.width()-1, height=self.getUnder.height()-1, bd =0)
+        self.getUnder_canvas.place(x=70, y=125, anchor="nw")
+        #キャンバスに画像を描画
+        self.overUnder_canvas.create_image(0,0,image=self.getUnder, anchor="nw")
+
+#エンドロール(08)========================================================================  
+    def go_to_endRoll(self):
         self.header_canvas.destroy()
         self.closeB.destroy()
-        self.title_frame()
+        #self.title_frame()
 
 if __name__ == "__main__":
     # アプリケーション実行
