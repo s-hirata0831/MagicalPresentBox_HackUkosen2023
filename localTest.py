@@ -592,9 +592,21 @@ class App(customtkinter.CTk):
 
 #エンドロール(08)========================================================================  
     def go_to_endRoll(self):
+        if self.unlockedBox == True:
+            self.getOver_canvas.destroy()
+            self.getOverComplete.destroy()
+            self.getOverCompletelabel1.destroy()
+            self.getOverCompletelabel2.destroy()
+            self.getOverCompletelabel3.destroy()
+        else:
+            self.getUnder_canvas.destroy()
+            self.getUnderComplete.destroy()
+            self.getUnderCompleteLabel1.destroy()
+            self.getUnderCompleteLabel2.destroy()
+            self.getUnderCompleteLabel3.destroy()
         self.header_canvas.destroy()
         self.closeB.destroy()
-        #self.title_frame()
+        self.title_frame()
 
 if __name__ == "__main__":
     # アプリケーション実行
