@@ -16,7 +16,11 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=Fal
 
 def led_light():
     for i in range(60,120):
-        pixels[i] = (0,255,0)
+        if i % 2 == 0:
+            pixels[i] = (0,255,0)
+        else:
+            pixels[i] = (255,0,0)
+
     pixels.show()
 
 def No_led():
