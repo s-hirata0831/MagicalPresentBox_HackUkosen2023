@@ -123,11 +123,11 @@ class App(customtkinter.CTk):
         #どちらの箱が空いているか判定
         if self.unlockedBox == True:
             print("上の箱が空いています")
-            led.rainbow_cycle(0.01)
+            led.led_light()
             self.overBox_open()
         else:
             print("下の箱が空いています")
-            led2.rainbow_cycle(0.01)
+            led2.led_light()
             self.underBox_open()
 
     def header_image(self):
