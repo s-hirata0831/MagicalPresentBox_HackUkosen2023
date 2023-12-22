@@ -1,3 +1,4 @@
+#実行する際には"sudo pigpiod"とターミナルで入力してください
 import pigpio 
 
 import time
